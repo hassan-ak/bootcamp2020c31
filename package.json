@@ -1,0 +1,19 @@
+{
+  "name": "bootcamp2020c31",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/hassan-ak/bootcamp2020c31.git",
+  "author": "Hassan Ali Khan <h.a.khan1992fl@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gatsby": "^3.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "gatsby clean"
+  }
+}
