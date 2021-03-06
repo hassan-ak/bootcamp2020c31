@@ -1,0 +1,29 @@
+/* Home Page */
+.homeContainer {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.emptyImage {
+  width: 75%;
+  border-radius: 50px;
+}
+.homeContent {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.homeDetail {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.title {
+  color: rgb(0, 81, 255);
+}
+.imageGridEmpty {
+  display: flex;
+  justify-content: center;
+}
