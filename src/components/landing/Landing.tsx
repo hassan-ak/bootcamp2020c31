@@ -5,9 +5,9 @@ import React from "react";
 import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 // Images Imports
-import home from "../../asserts/home.png";
 import "./landing.css";
 import { navigate } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 // Styling for home Component
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +46,12 @@ export const Landing = () => {
           elevation={0}
         >
           <CardContent>
-            <img src={home} className='homeImage' alt='LandingImage' />
+            <StaticImage
+              className='homeImage'
+              src='../../asserts/home.png'
+              alt='LandingImage'
+              placeholder='none'
+            />
           </CardContent>
         </Grid>
         <Grid

@@ -5,9 +5,9 @@ import React from "react";
 import { IconButton, Typography } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import logo from "../../asserts/logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 import { navigate } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +44,12 @@ const Header = () => {
               navigate("/");
             }}
           >
-            <img className={classes.iconShoe} src={logo} alt='logo' />
+            <StaticImage
+              className={classes.iconShoe}
+              src='../../asserts/logo.png'
+              alt='logo'
+              placeholder='none'
+            />
           </IconButton>
           <Typography variant='h4' className={classes.headerTitle}>
             Blogistan
