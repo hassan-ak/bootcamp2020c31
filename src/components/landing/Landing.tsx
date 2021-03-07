@@ -1,6 +1,7 @@
 // Imports
 // React Imports
-import React from "react";
+import React, { useContext } from "react";
+import { IdentityContext } from "../../../identity-context";
 // Material Ui Imports
 import { Button, Card, CardContent, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 // Home Component
 export const Landing = () => {
+  const { user, identity: netlifyIdentity } = useContext(IdentityContext);
   //  useStyles
   const classes = useStyles();
   return (
@@ -93,6 +95,29 @@ export const Landing = () => {
             >
               Blogs
             </Button>
+            {user === undefined ? (
+              <Button
+                variant='contained'
+                className='signInButton'
+                style={{ marginTop: "10px", width: "50%", alignSelf: "center" }}
+                onClick={() => {
+                  netlifyIdentity.open();
+                }}
+              >
+                Login
+              </Button>
+            ) : (
+              <Button
+                variant='contained'
+                className='signOutButton'
+                style={{ marginTop: "10px", width: "50%", alignSelf: "center" }}
+                onClick={() => {
+                  netlifyIdentity.logout();
+                }}
+              >
+                LogOut
+              </Button>
+            )}
           </CardContent>
         </Grid>
       </Grid>
