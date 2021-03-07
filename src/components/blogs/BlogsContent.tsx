@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, navigate, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import "./blogContent.css";
 import { Button, Card, CardContent, Grid } from "@material-ui/core";
@@ -69,7 +69,13 @@ export const BlogsContent = () => {
                 <p className='blogPageSummary'>{edge.node.summary}</p>
               </div>
               <div className='blogPageButtonDiv'>
-                <Button variant='contained' className={classes.readMore}>
+                <Button
+                  variant='contained'
+                  className={classes.readMore}
+                  onClick={() => {
+                    navigate(`/blogs/${edge.node.slug}`);
+                  }}
+                >
                   Read More
                 </Button>
               </div>
