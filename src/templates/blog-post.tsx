@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { graphql } from "gatsby";
 import "./blogPost.css";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -7,7 +7,7 @@ import "./blogPost.css";
 import Header from "../components/addOns/Header";
 import Footer from "../components/addOns/Footer";
 import { Button } from "@material-ui/core";
-import netlifyIdentity from "netlify-identity-widget";
+import { IdentityContext } from "../../identity-context";
 
 export const query = graphql`
   query($slug: String!) {
@@ -33,22 +33,7 @@ export const query = graphql`
 `;
 
 const BlogPost = (props: any) => {
-  console.log(props.data.contentfulBlogPost.summary);
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    netlifyIdentity.init({});
-  });
-  netlifyIdentity.on(
-    "login",
-    (user: { user_metadata: { full_name: React.SetStateAction<string> } }) => {
-      netlifyIdentity.close();
-      setUser(user.user_metadata.full_name);
-    }
-  );
-  netlifyIdentity.on("logout", () => {
-    netlifyIdentity.close();
-    setUser("");
-  });
+  const { user, identity: netlifyIdentity } = useContext(IdentityContext);
   return (
     <div>
       <Header />
@@ -71,7 +56,7 @@ const BlogPost = (props: any) => {
           </div>
         ) : (
           <div>
-            {user === "" ? (
+            {user === undefined ? (
               <div>
                 <div className='content'>
                   {props.data.contentfulBlogPost.summary}
@@ -100,9 +85,9 @@ const BlogPost = (props: any) => {
                 </div>
                 <div className='buttonDiv'>
                   <Button
-                    className='signInButton'
+                    className='signOutButton'
                     onClick={() => {
-                      netlifyIdentity.open();
+                      netlifyIdentity.logout();
                     }}
                   >
                     LogOut
